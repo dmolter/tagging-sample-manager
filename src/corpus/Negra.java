@@ -11,9 +11,7 @@ public class Negra extends Corpus {
 		super("negra", NEGRA_SIZE);
 	}
 
-	@Override
-	public void splitSample(String file, String tagger) {
-		super.splitSample(file, tagger);
+	public void splitSample(String tagger) {
 		Splitter s = new SplitterNegra(sampleLines, tagger);
 		s.split();
 	}

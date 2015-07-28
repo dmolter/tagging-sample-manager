@@ -10,7 +10,7 @@ import extraction.SampleExtractor;
 import extraction.SampleExtractorA;
 //import extraction.SampleExtractorB;
 
-public class Corpus {
+abstract public class Corpus {
 
 	private final String PATH = new File("").getAbsolutePath().concat("\\tagging\\");
 	protected String name;
@@ -29,24 +29,10 @@ public class Corpus {
 		SampleExtractor se = new SampleExtractorA(this.size, sampleSize, name);
 		this.sampleLines = se.getSampleLines();
 	}
+	
+	abstract public void splitSample(String tagger);
 
-	/**
-	 * subclasses call this first to read the sample from file, then instantiate the splitter
-	 * TODO: tagger currently unused in the supermethod
-	 * 
-	 *
-	 **/
-	public void splitSample(String file, String tagger) {
-		String number = null;
-		try {
-			input = new LineNumberReader(new FileReader(PATH + file));
-			while ((number = input.readLine()) != null) {
-				sampleLines.add(Integer.valueOf(number));
-			}
-		} catch (IOException ex) {
-			System.err.println("File error!");
-		}
-	}
+	
 
 	@Override
 	public String toString() {

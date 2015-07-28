@@ -4,7 +4,7 @@ import corpus.*;
 
 public class Core {
 
-	private static final double CORPUS_PERCENTAGE = 0.6;
+	private static final double CORPUS_PERCENTAGE = 0.2;
 	private static final String STANDARD_PARAMETER_STRING = "\"brown\"";
 
 	public static void main(String[] args) {
@@ -31,7 +31,7 @@ public class Core {
 		 */
 
 		c.extractSample(sizeSample);
-		c.splitSample(param1 + "_sample", "tree");
+		c.splitSample("tree");
 	}
 
 }

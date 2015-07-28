@@ -11,9 +11,7 @@ public class Brown extends Corpus {
 		super("brown", BROWN_SIZE);
 	}
 
-	@Override
-	public void splitSample(String file, String tagger) {
-		super.splitSample(file, tagger);
+	public void splitSample(String tagger) {
 		Splitter s = new SplitterBrown(sampleLines, tagger);
 		s.split();
 	}

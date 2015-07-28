@@ -55,7 +55,7 @@ public abstract class Splitter {
 			outputTest = new BufferedWriter(new FileWriter(PATH + prefix + "_tree_test.utf8"));
 			outputTestOriginal = new BufferedWriter(new FileWriter(PATH + prefix + "_tree_test_original.utf8"));
 		} catch (Exception e) {
-			System.err.println("File error!");
+			System.err.println("File error in initTreeIO!");
 			System.out.println(e.getMessage());
 		}
 	}
@@ -66,8 +66,9 @@ public abstract class Splitter {
 			outputTraining = new BufferedWriter(new FileWriter(PATH + prefix + "_stanford_training.utf8"));
 			outputTest = new BufferedWriter(new FileWriter(PATH + prefix + "_stanford_test.utf8"));
 			outputTestOriginal = new BufferedWriter(new FileWriter(PATH + prefix + "_stanford_test_original.utf8"));
-		} catch (IOException ex) {
-			System.err.println("File error!");
+		} catch (IOException e) {
+			System.err.println("File error in initStanfordIO!");
+			System.out.println(e.getMessage());
 		}
 
 	}
@@ -107,8 +108,8 @@ public abstract class Splitter {
 		if (set.contains(elementNumber)) {
 			element = readElement(input, elementNumber);
 			element = processElement(setLabel, element);
-			// System.out.println(set_label + ": " + element_number + element);
-			// output.write(element_number + ": " + "\n"); // optional
+			 System.out.println(setLabel + ": " + elementNumber + "\n" + element);
+			 output.write(elementNumber + ": " + "\n"); // optional
 			output.write(element);
 			// output.newLine();
 			output.flush();
@@ -159,14 +160,14 @@ public abstract class Splitter {
 			prepareSample();
 
 			for (int elementNum = 1; elementNum <= sizeCorpus; elementNum++) {
-				// System.out.println("# " + element_num); // tracking progress in the console
+				 System.out.println("# " + elementNum); // tracking progress in the console
 
 				createOutput("TRAI", element, elementNum);
 				createOutput("TEST", element, elementNum);
 
 			}
 		} catch (IOException e) {
-			System.err.println("File error!");
+			System.err.println("File error in split!");
 		} finally {
 			try {
 				input.close();
